@@ -31,9 +31,9 @@ function Contact() {
       <div className='min-h-screen w-full  md:flex items-center gap-8 rounded-[2em]'>
         <section className='md:w-1/2 '>
           <h1 className='text-[1.8em] mt-4 md:mt-0 md:text-[2.4em] lg:text-[3em] font-semibold text-[#5C67E7]'>Contact Me</h1>
-          <p className='text-[0.95rem] md:text-[1.05rem] lg:text-[1.2em] font-[400] tracking-wide leading-0 '>"Let's Connect!"
+          <p className='text-[0.95rem] md:text-[1.05rem] lg:text-[1.2em] font-[400] tracking-wide leading-0 '>&quot;Let's Connect!"&quot;
             <br />
-            Thank you for exploring my portfolio! If you have any questions, want to discuss potential collaborations, or simply wish to connect, feel free to reach out. I’m always open to new opportunities and exciting projects. Drop a message, and I’ll get back to you as soon as possible. Looking forward to connecting with you!</p>
+            Thank you for exploring my portfolio! If you have any questions, want to discuss potential collaborations, or simply wish to connect, feel free to reach out. I&apos;m always open to new opportunities and exciting projects. Drop a message, and I&apos;ll get back to you as soon as possible. Looking forward to connecting with you!</p>
           <div className='flex items-center gap-6 w-1/2 mt-2'>
             <Link href={'https://www.linkedin.com/in/rehan-khan-31bb062b4/'} target='main'>          <FaGithub className='text-4xl cursor-pointer rounded-full  ' /></Link>
             <Link href={'https://www.linkedin.com/in/rehan-khan-31bb062b4/'} target='main'>
