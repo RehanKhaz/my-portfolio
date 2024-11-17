@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens:{
+        'xm':'450px',},
+        animation:{
+         'spin-slow':"infinite 4.7s linear spin"
+        },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
