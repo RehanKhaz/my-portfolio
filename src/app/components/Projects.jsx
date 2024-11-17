@@ -115,25 +115,25 @@ function Projects() {
       <div id='Projects' className='mt-[4rem]'>
         <h1 className='text-[1.7em] md:text-[2.1em] lg:text-[2.5em]  font-[600] leading-0 tracking-wider'>What I have made?</h1>
         <nav className='w-full flex items-center gap-4 md:gap-6 lg:gap-10 justify-center'>
-          {["All", "TypeScript", "Website Clone", "Mini Projects"].map((item) => (
-            <button onClick={() => setSelectedCategory(`${item}`)} className={`tracking-widest ${selectedCategory === item && "border-b-[2px]"} leading-0 text-[.82em] md:text-[1.1em] lg:text-[1.3em] border-black w-max font-semibold py-2`}>{item}</button>
+          {["All", "TypeScript", "Website Clone", "Mini Projects"].map((item,index) => (
+            <button onClick={() => setSelectedCategory(`${item}`)} key={index} className={`tracking-widest ${selectedCategory === item && "border-b-[2px]"} leading-0 text-[.82em] md:text-[1.1em] lg:text-[1.3em] border-black w-max font-semibold py-2`}>{item}</button>
           ))}
         </nav>
         <div id='Projects' className='overflow-x-scroll h-[22em] px-4  Hiding-ScrollBar w-full lg:mt-4'>
           <div className='flex w-full gap-[2rem] h-[22em]'>
             {(selectedCategory === "TypeScript" || selectedCategory === "All" )  &&
               tsProjects.map((project, index) => (
-                <TSproject projectData={project} index={index} />
+                <TSproject key={index} projectData={project} index={index} />
               ))
             }
             {(selectedCategory === "Website Clone" || selectedCategory === "All" ) &&
           webClones.map((project,index)=> (
-            <WebClones index={index} webData={project}/>
+            <WebClones key={index} index={index} webData={project}/>
           ))
             }
             {(selectedCategory === "Mini Projects" || selectedCategory === "All" ) &&
           miniProjects.map((project,index)=> (
-            <MiniProjects index={index} webData={project}/>
+            <MiniProjects key={index} index={index} webData={project}/>
           ))
             }
           </div>
