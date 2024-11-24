@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React , {useState} from 'react'
 import Link from 'next/link'
 import { FaGithub, FaLinkedin, FaNpm, FaUser } from 'react-icons/fa'
 import { MdEmail } from "react-icons/md";
@@ -11,27 +11,23 @@ import { IoPersonAdd } from "react-icons/io5";
 import { BsFillSendFill } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import  { useForm, ValidationError } from '@formspree/react';
 
 function Contact() {
-  const handleSubmit = async (e) => {
-    const form  = e.target;
-    e.preventDefault();
-    setTimeout(() => {
-      toast.success("Form under Progess.")
-      toast.success("Contact through Linkedin")
-    form.reset()
-    }, 3000)
+  const [state, handleSubmit] = useForm("mjkveovj");
+  const [toastShown, setToastShown] = useState(false)
+  if (state.succeeded && !toastShown) {
+       toast.success('Thanks for Contacting me!')
+       setToastShown(!toastShown)
+       document.getElementById('Contact').reset();
   }
 
-
-
-  return (
+    return (
     <>
       <div className='min-h-screen w-full  md:flex items-center gap-8 rounded-[2em]'>
         <section className='md:w-1/2 '>
           <h1 className='text-[1.8em] mt-4 md:mt-0 md:text-[2.4em] lg:text-[3em] font-semibold text-[#5C67E7]'>Contact Me</h1>
-          <p className='text-[0.95rem] md:text-[1.05rem] lg:text-[1.2em] font-[400] tracking-wide leading-0 '>&quot;Let's Connect!"&quot;
+          <p className='text-[0.95rem] md:text-[1.05rem] lg:text-[1.2em] font-[400] tracking-wide leading-0 '>&quot;Let's Connect!&quot;
             <br />
             Thank you for exploring my portfolio! If you have any questions, want to discuss potential collaborations, or simply wish to connect, feel free to reach out. I&apos;m always open to new opportunities and exciting projects. Drop a message, and I&apos;ll get back to you as soon as possible. Looking forward to connecting with you!</p>
           <div className='flex items-center gap-6 w-1/2 mt-2'>
@@ -54,8 +50,6 @@ function Contact() {
 
         <form
           id="Contact"
-          action="https://script.google.com/macros/s/AKfycbyzgSwoSrNBNm2Wq-qR5-kFROssY0m6_pQPg4MAilcUNnV8HZ2CHCdYzdOwYo-JIWB6kA/exec"
-          method="post"
           name="contact-form"
           className="md:w-[45%] items-center border-[#FACC15] border-[3px] mt-6 rounded-[1em] rounded-tl-[5rem] px-[1rem] py-[.7rem] flex flex-col gap-y-4 md:px-[1.5rem] md:py-[1.1rem] lg:px-[2rem] lg:py-[1.5rem] md:min-h-[60vh]"
           onSubmit={handleSubmit}
@@ -76,6 +70,11 @@ function Contact() {
             />
             <IoPersonAdd className="size-4 md:size-6 lg:size-8" />
           </div>
+          <ValidationError 
+        prefix="Name" 
+        field="name"
+        errors={state.errors}
+      />
           <div className="h-[2.5rem] lg:h-[3rem] bg-white w-full rounded-[.9em] border-gray-400 border-[2px] px-[1rem] flex items-center justify-between">
             <input
               required
@@ -89,6 +88,11 @@ function Contact() {
             />
             <MdOutlineMarkEmailRead className="size-4 md:size-6 lg:size-8" />
           </div>
+          <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
           <div className="h-[2.5rem] lg:h-[3rem] bg-white w-full rounded-[.9em] border-gray-400 border-[2px] px-[1rem] flex items-center justify-between">
             <input
               required
@@ -102,6 +106,11 @@ function Contact() {
             />
             <FaRegStar className="size-4 md:size-6 lg:size-8" />
           </div>
+          <ValidationError 
+        prefix="Subject" 
+        field="subject"
+        errors={state.errors}
+      />
           <div className="h-[4rem] md:h-[5rem] lg:h-[7rem] bg-white w-full rounded-lg border-gray-400 border-[2px] px-[1rem] flex items-center justify-between">
             <textarea
               required
@@ -111,9 +120,16 @@ function Contact() {
               name="Message"
               placeholder="Message"
             />
+
           </div>
+          <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
+      />
           <button
             type="submit"
+            disabled={state.submitting}
             className="p-3 box-border active:text-blue-500 active:bg-white bg-blue-500 text-[.9rem] md:text-lg tracking-wider leading-0 cursor-pointer text-white flex items-center justify-between gap-3 rounded-md w-max"
           >
             <BsFillSendFill /> Send Message
